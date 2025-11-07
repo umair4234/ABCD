@@ -102,15 +102,27 @@ const HomePage: React.FC = () => {
         </div>
       </AnimatedSection>
 
-      {/* Problem -> Solution */}
+      {/* Video Demo Section */}
       <AnimatedSection className="py-20 md:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-            Stop creating images one-by-one.
+            See PixPilot in Action
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
-            PixPilot 2.0 turns a list of prompts into a folder of finished images in minutes, whether you're using the free model or a premium one.
+          <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+            Watch how PixPilot turns a simple list of prompts into a folder full of AI-generated images, completely on autopilot.
           </p>
+          <div className="mt-12 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200">
+            <div className="aspect-video bg-slate-900">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/3hzJsjjMKVg?si=i2tYEVKtFDmcgtp-&autoplay=0&rel=0"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
         </div>
       </AnimatedSection>
       

@@ -85,6 +85,12 @@ const HowItWorksCarousel: React.FC = () => {
       <div className="relative w-full h-80 md:h-[500px]" style={{ perspective: '1200px' }}>
         {slides.map((slide, i) => {
           const animationProps = getAnimationProps(i);
+          const totalSlides = slides.length;
+          let offset = i - activeIndex;
+          if (offset > totalSlides / 2) offset -= totalSlides;
+          if (offset < -totalSlides / 2) offset += totalSlides;
+          const isVisible = Math.abs(offset) <= 1;
+
           return (
             <motion.div
               key={i}
@@ -98,7 +104,7 @@ const HowItWorksCarousel: React.FC = () => {
                   src={slide.imgSrc} 
                   alt={slide.title}
                   className="w-full h-full object-contain"
-                  loading={i === activeIndex ? 'eager' : 'lazy'}
+                  loading={isVisible ? 'eager' : 'lazy'}
                 />
               </div>
             </motion.div>
