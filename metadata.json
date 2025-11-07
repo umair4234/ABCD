@@ -1,0 +1,5 @@
+{
+  "name": "PixPilot",
+  "description": "A clean marketing and download website for PixPilot, a Windows app that bulk-generates AI images from line-separated prompts.",
+  "requestFramePermissions": []
+}
