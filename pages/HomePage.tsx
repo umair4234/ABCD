@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedSection from '../components/AnimatedSection';
+import HowItWorksCarousel from '../components/HowItWorksCarousel';
 import { Layers, Zap, Award, Crop, RefreshCcw, DownloadCloud, ShieldCheck, UserCheck, Clock, Sparkles } from 'lucide-react';
 
 const features = [
@@ -88,6 +89,19 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* How it Works Carousel */}
+      <AnimatedSection id="how-it-works" className="py-20 md:py-24 bg-slate-900 text-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">How PixPilot Works</h2>
+            <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-400">
+              From prompt to hundreds of images in just a few clicks.
+            </p>
+          </div>
+          <HowItWorksCarousel />
+        </div>
+      </AnimatedSection>
+
       {/* Problem -> Solution */}
       <AnimatedSection className="py-20 md:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -97,49 +111,6 @@ const HomePage: React.FC = () => {
           <p className="mt-4 text-lg text-slate-600">
             PixPilot 2.0 turns a list of prompts into a folder of finished images in minutes, whether you're using the free model or a premium one.
           </p>
-        </div>
-      </AnimatedSection>
-      
-      {/* How it Works */}
-      <AnimatedSection id="how-it-works" className="py-20 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">See PixPilot in Action</h2>
-             <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-600">
-              Watch this quick demo to see how you can go from a list of prompts to a folder full of images in just a few clicks.
-            </p>
-          </div>
-          
-          <div className="mt-16 max-w-4xl mx-auto">
-            <div className="relative aspect-video w-full rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
-                <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/3hzJsjjMKVg"
-                    title="How to generate 100s of AI images at once with PixPilot"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                ></iframe>
-            </div>
-          </div>
-          
-          <div className="mt-20 grid md:grid-cols-3 gap-12 text-center">
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center w-16 h-16 bg-violet-100 text-brand-violet rounded-full text-2xl font-bold">1</div>
-              <h3 className="mt-6 text-xl font-bold">Paste or Import Prompts</h3>
-              <p className="mt-2 text-slate-600">Each line you paste or import from a .txt file becomes a separate prompt.</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center w-16 h-16 bg-violet-100 text-brand-violet rounded-full text-2xl font-bold">2</div>
-              <h3 className="mt-6 text-xl font-bold">Choose Your Model</h3>
-              <p className="mt-2 text-slate-600">Select the built-in Free model or a premium Runware model if you've added an API key.</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center w-16 h-16 bg-violet-100 text-brand-violet rounded-full text-2xl font-bold">3</div>
-              <h3 className="mt-6 text-xl font-bold">Generate & Collect</h3>
-              <p className="mt-2 text-slate-600">Start the queue and find your images neatly organized in your chosen output folder.</p>
-            </div>
-          </div>
         </div>
       </AnimatedSection>
       
