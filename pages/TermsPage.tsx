@@ -17,7 +17,7 @@ const TermsPage: React.FC = () => {
                 <h2>3. User Responsibilities</h2>
                 <ul>
                     <li>You are responsible for the prompts you provide and the content you generate. You agree not to use the App to create any content that is illegal, harmful, or infringes on the rights of others.</li>
-                    <li>If you use your own API key, you are responsible for complying with the Terms of Service of the API provider (e.g., OpenAI, Stability AI, etc.). PixPilot is not responsible for any violations of third-party terms.</li>
+                    <li>If you use your own API key from a third-party service like Runware AI, you are responsible for complying with that provider's Terms of Service. PixPilot is not responsible for any violations of third-party terms.</li>
                     <li>You are responsible for securing your own API keys.</li>
                 </ul>
 

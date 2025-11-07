@@ -16,7 +16,7 @@ const PrivacyPage: React.FC = () => {
                 <ul>
                     <li>The prompts you enter into the application.</li>
                     <li>The images you generate using the application.</li>
-                    <li>Your API keys, which are stored encrypted on your local machine.</li>
+                    <li>Your API keys. They are stored encrypted on your local machine and never transmitted to our servers.</li>
                     <li>Any personal files or data on your computer outside of the application's own settings files.</li>
                 </ul>
 
@@ -36,7 +36,7 @@ const PrivacyPage: React.FC = () => {
                 </ul>
                 
                 <h2>5. Contact Us</h2>
-                <p>If you have any questions about this Privacy Policy, please contact us at support@pixpilot.com.</p>
+                <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:umairdildar02@gmail.com">umairdildar02@gmail.com</a>.</p>
             </div>
         </div>
     );

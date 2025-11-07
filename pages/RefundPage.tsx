@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const RefundPage: React.FC = () => {
     return (
@@ -8,18 +9,21 @@ const RefundPage: React.FC = () => {
                 <h1>Refund Policy</h1>
                 <p><strong>Last Updated:</strong> {new Date().toLocaleDateString()}</p>
                 
-                <h2>Lifetime Deal Refunds</h2>
-                <p>We want you to be satisfied with your purchase of PixPilot. We offer a 14-day, no-questions-asked refund policy for all lifetime deal purchases.</p>
+                <h2>All Sales Are Final</h2>
+                <p>Due to the nature of PixPilot being a digital product that is delivered instantly upon purchase, we have a strict <strong>no refund policy</strong>.</p>
+                <p>Once you have downloaded the software, we are unable to revoke your access or verify that it has been uninstalled from your system. This policy is in place to protect our intellectual property and prevent fraud. We thank you for your understanding.</p>
                 
-                <h2>How to Request a Refund</h2>
-                <p>To request a refund, please contact us at support@pixpilot.com within 14 days of your purchase. Please include your order number or the email address you used to purchase the license.</p>
-                <p>Refunds will be processed within 5-7 business days and will be credited back to your original method of payment.</p>
-                
-                <h2>Late or Missing Refunds</h2>
-                <p>If you haven’t received a refund yet, first check your bank account again. Then contact your credit card company, as it may take some time before your refund is officially posted. If you’ve done all of this and you still have not received your refund, please contact us at support@pixpilot.com.</p>
+                <h2>Make an Informed Decision</h2>
+                <p>We encourage you to review all available information on our website before making a purchase to ensure PixPilot is the right fit for your needs:</p>
+                <ul>
+                    <li>Watch the video demo on our <Link to="/">homepage</Link>.</li>
+                    <li>Read through the features and capabilities.</li>
+                    <li>Check the <Link to="/faq">FAQ page</Link> for answers to common questions.</li>
+                </ul>
                 
                 <h2>Questions</h2>
-                <p>If you have any questions concerning our refund policy, please contact us at support@pixpilot.com.</p>
+                <p>If you have any questions about PixPilot before purchasing, or if you encounter any technical issues after your purchase, please don't hesitate to contact us. We are here to help.</p>
+                <p>Please contact us at <a href="mailto:umairdildar02@gmail.com">umairdildar02@gmail.com</a>.</p>
             </div>
         </div>
     );
