@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Zap } from 'lucide-react';
@@ -14,26 +13,26 @@ const footerLinks = [
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-slate-100 border-t border-slate-200">
-            <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-                <div className="space-y-8">
-                     <div className="flex justify-center items-center gap-2 text-2xl font-bold text-slate-900">
-                        <Zap className="w-7 h-7 text-brand-violet" />
+        <footer className="site-footer">
+            <div className="container">
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+                    <div className="logo">
+                        <Zap size={24} color="var(--primary)" fill="var(--primary)" />
                         PixPilot
                     </div>
-                    <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Footer">
+                    
+                    <nav className="footer-links">
                         {footerLinks.map((link) => (
-                            <Link key={link.name} to={link.path} className="text-base text-slate-600 hover:text-brand-violet">
+                            <Link key={link.name} to={link.path} className="footer-link">
                                 {link.name}
                             </Link>
                         ))}
                     </nav>
-                    <p className="text-center text-sm text-slate-500">
-                        Please follow your model/API provider’s Terms of Service.
-                    </p>
-                    <p className="text-center text-sm text-slate-500">
-                        &copy; {new Date().getFullYear()} PixPilot. All rights reserved.
-                    </p>
+
+                    <div className="text-center text-muted" style={{ fontSize: '0.85rem', opacity: 0.7 }}>
+                        <p style={{ marginBottom: '8px' }}>Please follow your model/API provider’s Terms of Service.</p>
+                        <p>&copy; {new Date().getFullYear()} PixPilot. All rights reserved.</p>
+                    </div>
                 </div>
             </div>
         </footer>

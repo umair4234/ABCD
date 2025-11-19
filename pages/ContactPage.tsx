@@ -1,29 +1,28 @@
-
 import React from 'react';
 import { Mail } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 
 const ContactPage: React.FC = () => {
     return (
-        <div className="bg-white py-20 md:py-24">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <AnimatedSection className="text-center">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Get in Touch</h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
-                        Have questions or need support? Send us an email.
-                    </p>
+        <div className="page-content">
+            <div className="container">
+                <AnimatedSection className="text-center" style={{ marginBottom: '60px' }}>
+                    <h1 style={{ fontSize: '3rem' }}>Get in Touch</h1>
+                    <p className="text-muted mt-4">We'd love to hear from you.</p>
                 </AnimatedSection>
 
-                <AnimatedSection className="mt-20">
-                    <div className="max-w-md mx-auto">
+                <AnimatedSection>
+                    <div className="card" style={{ maxWidth: '500px', margin: '0 auto', textAlign: 'center', padding: '60px 40px' }}>
+                        <Mail size={48} color="var(--primary)" style={{ margin: '0 auto 24px' }} />
+                        <h2 style={{ fontSize: '1.5rem', marginBottom: '12px' }}>Email Support</h2>
+                        <p className="text-muted" style={{ marginBottom: '24px' }}>
+                            For questions, bug reports, or feedback.
+                        </p>
                         <a 
                             href="mailto:umairdildar02@gmail.com"
-                            className="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block"
+                            style={{ color: 'var(--primary)', fontSize: '1.2rem', fontWeight: 600 }}
                         >
-                            <Mail className="mx-auto w-12 h-12 text-blue-500" />
-                            <h2 className="mt-6 text-2xl font-bold text-slate-900">Email Us</h2>
-                            <p className="mt-2 text-slate-600">For support, feedback, and inquiries.</p>
-                            <span className="mt-4 inline-block text-brand-violet font-semibold">umairdildar02@gmail.com</span>
+                            umairdildar02@gmail.com
                         </a>
                     </div>
                 </AnimatedSection>

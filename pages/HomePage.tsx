@@ -1,217 +1,234 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedSection from '../components/AnimatedSection';
-import HowItWorksCarousel from '../components/HowItWorksCarousel';
-import { Layers, Zap, Award, Crop, RefreshCcw, DownloadCloud, ShieldCheck, UserCheck, Clock, Sparkles } from 'lucide-react';
+import HowItWorksSection from '../components/HowItWorksCarousel'; // Using the new tabbed component
+import { Layers, Zap, Award, Crop, RefreshCcw, ShieldCheck, DownloadCloud } from 'lucide-react';
 
 const features = [
-  { icon: <Layers size={32} />, title: "Free & Premium Models", description: "Use the built-in free model for unlimited tests, or add your Runware API key for high-speed, premium quality generation." },
-  { icon: <Zap size={32} />, title: "10-20x Faster Generation", description: "Premium models generate images in 5-15 seconds, a massive speed boost over the free model's 30-60 seconds." },
-  { icon: <Award size={32} />, title: "Superior Image Quality", description: "Unlock maximum detail and realism with Runware's Flux Dev model, perfect for professional work and final outputs." },
-  { icon: <Crop size={32} />, title: "Multiple Aspect Ratios", description: "Create images in various formats including 16:9, 9:16, 1:1, and 4:3 to fit any project's needs." },
-  { icon: <RefreshCcw size={32} />, title: "Smart Regeneration", description: "Easily regenerate any failed images individually or all at once, ensuring you never lose a part of your batch." },
-  { icon: <DownloadCloud size={32} />, title: "No Installation Needed", description: "PixPilot is a standalone app. Just download, extract, and run. No complex setup or dependencies required." },
+  { icon: <Layers />, title: "Free & Premium", description: "Unlimited generations with the built-in free model. Or attach a Runware key for 10x speed." },
+  { icon: <Zap />, title: "Blazing Fast", description: "Premium models generate images in 5-15 seconds. Bulk process 1000s of prompts while you sleep." },
+  { icon: <Award />, title: "High Fidelity", description: "Support for Flux Dev/Schnell models ensures professional-grade details and coherence." },
+  { icon: <Crop />, title: "Aspect Ratios", description: "Generate in 16:9, 9:16, 1:1, or 4:3. Perfect for social media, wallpapers, or assets." },
+  { icon: <RefreshCcw />, title: "Smart Retry", description: "Failed generations? One click to retry just the failed ones. No waste." },
+  { icon: <DownloadCloud />, title: "Portable App", description: "No installer. No dependencies. Just unzip and run PixPilot.exe." },
 ];
 
 const comparisonData = [
-    { service: 'Runware Flux Schnell (Fast)', cost: '$0.0032', value: '≈ 313 images per $1' },
-    { service: 'Runware Flux Dev (High Quality)', cost: '$0.0064', value: '≈ 156 images per $1' },
-    { service: 'Leonardo AI (API)', cost: '≈ $0.018 per image', value: '≈ 55 images per $1' },
-    { service: 'Midjourney (Standard Estimate)', cost: '≈ $0.033–$0.05 per image', value: '≈ 20–30 images per $1' },
+    { service: 'PixPilot (with Runware)', cost: '$0.003', value: '300+ imgs/$1' },
+    { service: 'PixPilot (Free Model)', cost: '$0.00', value: 'Unlimited' },
+    { service: 'Midjourney', cost: '$0.05', value: '20 imgs/$1' },
+    { service: 'Leonardo AI', cost: '$0.018', value: '55 imgs/$1' },
 ];
 
 const HomePage: React.FC = () => {
-
-  const heroVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    }),
-  };
-
-  interface FeatureCardProps {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-  }
-
-  const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
-    <motion.div
-      className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-start gap-4"
-      whileHover={{ scale: 1.03, y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" }}
-      transition={{ type: "spring", stiffness: 300 }}
-    >
-      <div className="bg-violet-100 text-brand-violet p-3 rounded-full">{icon}</div>
-      <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-      <p className="text-slate-600">{description}</p>
-    </motion.div>
-  );
-
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="overflow-x-hidden">
+    <div>
       {/* Hero Section */}
-      <section className="bg-slate-100 py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1 custom={0} initial="hidden" animate="visible" variants={heroVariants} className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight">
-            Generate unlimited AI images in bulk.
-          </motion.h1>
-          <motion.p custom={1} initial="hidden" animate="visible" variants={heroVariants} className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-slate-600">
-            Now with both a Free, unlimited model and support for high-speed, premium models. Paste prompts. Click Generate. Watch hundreds of images appear—fast.
-          </motion.p>
-          <motion.div custom={2} initial="hidden" animate="visible" variants={heroVariants} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/download" className="inline-block bg-brand-violet text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-violet-700 transition-all duration-300 text-lg">
-              Get Lifetime Deal - $27
-            </Link>
-            <a 
-              href="#how-it-works" 
-              onClick={(e) => handleScroll(e, 'how-it-works')}
-              className="inline-block bg-white text-slate-700 font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-slate-200 transition-all duration-300 ring-1 ring-slate-300 text-lg"
-            >
-              See How It Works
-            </a>
+      <section style={{ 
+          padding: '120px 0 60px', 
+          textAlign: 'center', 
+          background: 'radial-gradient(circle at 50% 0%, #1e1b4b 0%, #050507 60%)',
+          overflow: 'hidden'
+      }}>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span style={{ 
+                display: 'inline-block', 
+                padding: '6px 16px', 
+                background: 'rgba(99, 102, 241, 0.1)', 
+                color: 'var(--primary)', 
+                borderRadius: '50px', 
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                marginBottom: '24px',
+                border: '1px solid rgba(99, 102, 241, 0.2)'
+            }}>
+              v2.0 Now Available — Unlimited Free Generation
+            </span>
+            <h1 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', marginBottom: '24px', lineHeight: 1.1 }}>
+              Bulk Generate AI Images.<br />
+              <span className="text-gradient">On Autopilot.</span>
+            </h1>
+            <p style={{ fontSize: '1.25rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 40px' }}>
+              The ultimate Windows desktop app for mass image generation. Paste prompts, click generate, walk away.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+              <Link to="/download" className="btn btn-primary" style={{ padding: '16px 40px', fontSize: '1.1rem' }}>
+                Get PixPilot Lifetime - $27
+              </Link>
+              <button onClick={() => scrollToSection('how-it-works')} className="btn btn-secondary">
+                See How It Works
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Hero Image with 3D Tilt */}
+          <motion.div 
+            initial={{ opacity: 0, rotateX: 20, y: 50 }}
+            animate={{ opacity: 1, rotateX: 10, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            style={{ 
+                marginTop: '80px', 
+                perspective: '2000px',
+                display: 'flex',
+                justifyContent: 'center'
+            }}
+          >
+            <div style={{
+                transform: 'rotateX(15deg)',
+                borderRadius: '12px',
+                boxShadow: '0 0 100px rgba(99, 102, 241, 0.15), 0 20px 40px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                overflow: 'hidden',
+                maxWidth: '1000px'
+            }}>
+                <img src="https://i.ibb.co/4ZjxhcVX/5-Full-interface.png" alt="PixPilot Interface" style={{ width: '100%', display: 'block' }} />
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* How it Works Carousel */}
-      <AnimatedSection id="how-it-works" className="py-20 md:py-24 bg-slate-900 text-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">How PixPilot Works</h2>
-            <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-400">
-              From prompt to hundreds of images in just a few clicks.
-            </p>
-          </div>
-          <HowItWorksCarousel />
+      {/* Video Demo Section */}
+      <AnimatedSection className="section" style={{ paddingBottom: '40px' }}>
+        <div className="container">
+            <div className="text-center" style={{ marginBottom: '40px' }}>
+                <h2>See PixPilot in Action</h2>
+                <p className="text-muted mt-4" style={{ maxWidth: '600px', margin: '16px auto 0' }}>
+                    Watch how PixPilot turns a simple list of prompts into a folder full of AI-generated images, completely on autopilot.
+                </p>
+            </div>
+            
+            <div style={{ 
+                maxWidth: '900px', 
+                margin: '0 auto', 
+                borderRadius: '16px', 
+                overflow: 'hidden',
+                boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                border: '1px solid var(--border-color)',
+                position: 'relative',
+                paddingBottom: '56.25%', // 16:9 aspect ratio
+                height: 0,
+                background: '#000'
+            }}>
+                <iframe 
+                    src="https://www.youtube.com/embed/3hzJsjjMKVg" 
+                    title="PixPilot Demo"
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%'
+                    }}
+                ></iframe>
+            </div>
         </div>
       </AnimatedSection>
 
-      {/* Video Demo Section */}
-      <AnimatedSection className="py-20 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-            See PixPilot in Action
-          </h2>
-          <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
-            Watch how PixPilot turns a simple list of prompts into a folder full of AI-generated images, completely on autopilot.
-          </p>
-          <div className="mt-12 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200">
-            <div className="aspect-video bg-slate-900">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/3hzJsjjMKVg?si=i2tYEVKtFDmcgtp-&autoplay=0&rel=0"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
+      {/* How It Works */}
+      <AnimatedSection id="how-it-works" className="section" style={{ background: 'var(--bg-body)' }}>
+        <div className="container">
+          <div className="text-center" style={{ marginBottom: '60px' }}>
+            <h2>How It Works</h2>
+            <p className="text-muted mt-4">Stop generating one by one. Batch process your ideas.</p>
           </div>
+          <HowItWorksSection />
         </div>
       </AnimatedSection>
-      
-      {/* Cost & Value Comparison */}
-      <AnimatedSection className="py-20 md:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 flex items-center justify-center gap-3">
-                    <Sparkles className="w-8 h-8 text-brand-violet" />
-                    Cost & Value Comparison
-                </h2>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-600">
-                    With PixPilot's Bring-Your-Own-Key model, you get access to premium generation at a fraction of the cost of other services.
-                </p>
+
+      {/* Features Grid */}
+      <AnimatedSection className="section">
+        <div className="container">
+            <div className="text-center" style={{ marginBottom: '60px' }}>
+                <h2>Power User Features</h2>
+                <p className="text-muted mt-4">Everything you need for serious AI art production.</p>
             </div>
-            <div className="mt-12 bg-slate-900 text-white rounded-2xl shadow-2xl p-6 md:p-8">
-                <div className="grid grid-cols-3 gap-4 text-left font-semibold text-slate-400 border-b border-slate-700 pb-4">
-                    <h3>Model / Service</h3>
-                    <h3>Cost per Image <span className="text-slate-500">(≈ 1024x1024)</span></h3>
-                    <h3>Images per $1</h3>
-                </div>
-                {comparisonData.map((item) => (
-                    <div key={item.service} className="grid grid-cols-3 gap-4 text-left py-4 border-b border-slate-800 last:border-b-0 items-center">
-                        <p className="font-semibold text-white">{item.service}</p>
-                        <p className="text-slate-300">{item.cost}</p>
-                        <p className="text-slate-300">{item.value}</p>
+            <div className="grid-3">
+                {features.map((f, i) => (
+                    <div key={i} className="card">
+                        <div style={{ color: 'var(--primary)', marginBottom: '20px' }}>
+                            {React.cloneElement(f.icon as React.ReactElement<any>, { size: 32 })}
+                        </div>
+                        <h3 style={{ fontSize: '1.25rem', marginBottom: '12px' }}>{f.title}</h3>
+                        <p className="text-muted">{f.description}</p>
                     </div>
                 ))}
             </div>
-            <p className="text-center text-sm text-slate-500 mt-4">Note: Costs are for using your own Runware API key and are subject to Runware's pricing. PixPilot does not charge for generation.</p>
         </div>
       </AnimatedSection>
 
-      {/* Key Features */}
-      <AnimatedSection className="py-20 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">PixPilot 2.0: More Power, More Flexibility</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature) => (
-              <FeatureCard key={feature.title} icon={feature.icon} title={feature.title} description={feature.description} />
-            ))}
-          </div>
+      {/* Comparison Table */}
+      <AnimatedSection className="section" style={{ background: 'var(--bg-surface)' }}>
+        <div className="container">
+            <div className="text-center" style={{ marginBottom: '60px' }}>
+                <h2>Unbeatable Value</h2>
+                <p className="text-muted mt-4">Bring your own key (BYOK) means you pay wholesale prices.</p>
+            </div>
+            <div style={{ maxWidth: '800px', margin: '0 auto', background: 'var(--bg-body)', borderRadius: '16px', padding: '2px', border: '1px solid var(--border-color)' }}>
+                 <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', padding: '20px', borderBottom: '1px solid var(--border-color)', fontWeight: 600, color: 'var(--text-muted)' }}>
+                     <div>Provider</div>
+                     <div>Cost / Image</div>
+                     <div>Efficiency</div>
+                 </div>
+                 {comparisonData.map((row, i) => (
+                     <div key={i} style={{ 
+                         display: 'grid', 
+                         gridTemplateColumns: '2fr 1fr 1fr', 
+                         padding: '20px', 
+                         borderBottom: i === comparisonData.length - 1 ? 'none' : '1px solid var(--border-color)',
+                         alignItems: 'center'
+                     }}>
+                         <div style={{ color: i < 2 ? 'var(--primary)' : 'white', fontWeight: i < 2 ? 600 : 400 }}>
+                            {row.service} {i === 0 && <span style={{ fontSize: '0.7em', background: 'var(--primary)', color: 'white', padding: '2px 6px', borderRadius: '4px', marginLeft: '8px' }}>RECOMMENDED</span>}
+                         </div>
+                         <div className="text-muted">{row.cost}</div>
+                         <div className="text-muted">{row.value}</div>
+                     </div>
+                 ))}
+            </div>
+            <p className="text-center text-muted mt-4" style={{ fontSize: '0.9rem' }}>
+                * Prices based on standard resolution. PixPilot takes 0% commission on API usage.
+            </p>
         </div>
-      </AnimatedSection>
-      
-      {/* Trust & Clarity */}
-      <AnimatedSection className="py-20 md:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-           <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Trust & Security</h2>
-           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                <ShieldCheck size={32} className="text-brand-violet" />
-                <h3 className="text-xl font-bold text-slate-900">100% Local & Private</h3>
-                <p className="text-slate-600">Your prompts, images, and API keys never leave your PC. Keys are stored locally and encrypted.</p>
-              </div>
-              <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                <UserCheck size={32} className="text-brand-violet" />
-                <h3 className="text-xl font-bold text-slate-900">No Account Required</h3>
-                <p className="text-slate-600">Download, extract, and start generating immediately. No sign-up or tracking.</p>
-              </div>
-              <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                <Clock size={32} className="text-brand-violet" />
-                <h3 className="text-xl font-bold text-slate-900">Work in the Background</h3>
-                <p className="text-slate-600">Keep using your computer while PixPilot renders your image queue without interruption.</p>
-              </div>
-           </div>
-        </div>
-      </AnimatedSection>
-      
-      {/* FAQ Teaser */}
-      <AnimatedSection className="py-12 text-center">
-        <p className="text-lg text-slate-600">
-          Have more questions? Check out our <Link to="/faq" className="text-brand-violet font-semibold hover:underline">full FAQ page</Link>.
-        </p>
       </AnimatedSection>
 
-      {/* Final CTA */}
-      <section className="bg-brand-violet">
-        <div className="max-w-4xl mx-auto text-center py-20 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-extrabold text-white">Ready to generate at scale?</h2>
-          <div className="mt-8">
-            <Link to="/download" className="inline-block bg-white text-brand-violet font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-slate-200 transition-all duration-300 text-lg">
-              Get PixPilot - $27
-            </Link>
-          </div>
+      {/* CTA */}
+      <AnimatedSection className="section">
+        <div className="container text-center">
+            <div style={{ 
+                background: 'linear-gradient(180deg, var(--bg-surface-hover) 0%, var(--bg-surface) 100%)', 
+                padding: '80px 20px', 
+                borderRadius: '24px', 
+                border: '1px solid var(--border-color)',
+                maxWidth: '900px',
+                margin: '0 auto'
+            }}>
+                <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Start Generating Today</h2>
+                <p className="text-muted" style={{ fontSize: '1.2rem', marginBottom: '40px', maxWidth: '500px', margin: '0 auto 40px' }}>
+                    Join smart creators who save time and money with PixPilot.
+                </p>
+                <Link to="/download" className="btn btn-primary" style={{ padding: '18px 48px', fontSize: '1.2rem' }}>
+                    Buy Lifetime License - $27
+                </Link>
+                <p style={{ marginTop: '20px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                    Windows 10/11 (64-bit) • Instant Download
+                </p>
+            </div>
         </div>
-      </section>
+      </AnimatedSection>
     </div>
   );
 };

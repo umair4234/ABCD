@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -26,9 +25,9 @@ const App: React.FC = () => {
     return (
         <HashRouter>
             <ScrollToTop />
-            <div className="flex flex-col min-h-screen">
+            <div className="app-wrapper">
                 <Header />
-                <main className="flex-grow">
+                <main className="main-content">
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/download" element={<DownloadPage />} />

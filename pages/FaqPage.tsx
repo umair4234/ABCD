@@ -1,4 +1,3 @@
-
 import React from 'react';
 import FaqItem from '../components/FaqItem';
 import AnimatedSection from '../components/AnimatedSection';
@@ -36,17 +35,17 @@ const faqs = [
 
 const FaqPage: React.FC = () => {
     return (
-        <div className="bg-white py-20 md:py-24">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <AnimatedSection className="text-center">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
-                        Find answers to common questions about PixPilot 2.0.
+        <div className="page-content">
+            <div className="container">
+                <AnimatedSection className="text-center" style={{ marginBottom: '60px' }}>
+                    <h1 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Frequently Asked Questions</h1>
+                    <p className="text-muted">
+                        Everything you need to know about the product and billing.
                     </p>
                 </AnimatedSection>
                 
-                <AnimatedSection className="mt-16">
-                    <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                <AnimatedSection>
+                    <div style={{ maxWidth: '800px', margin: '0 auto', background: 'var(--bg-surface)', padding: '40px', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
                         {faqs.map((faq, index) => (
                             <FaqItem key={index} question={faq.question} answer={faq.answer} />
                         ))}

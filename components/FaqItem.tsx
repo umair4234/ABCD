@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
@@ -12,17 +11,25 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-slate-200 py-6">
+    <div style={{ borderBottom: '1px solid var(--border-color)', padding: '24px 0' }}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center text-left"
+        style={{ 
+            width: '100%', 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            textAlign: 'left',
+            background: 'transparent',
+            cursor: 'pointer'
+        }}
       >
-        <h3 className="text-lg font-semibold text-slate-800">{question}</h3>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-main)' }}>{question}</h3>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ChevronDown className="w-6 h-6 text-slate-500" />
+          <ChevronDown size={20} color="var(--text-muted)" />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -32,9 +39,9 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
             animate={{ opacity: 1, height: 'auto', marginTop: '16px' }}
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden"
+            style={{ overflow: 'hidden' }}
           >
-            <p className="text-slate-600 leading-relaxed">{answer}</p>
+            <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
